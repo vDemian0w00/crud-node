@@ -1,3 +1,5 @@
+console.log(process)
+
 export const PORT = process.env.PORT || 2020
 
 export const DB_HOST = process.env.DB_HOST || 'localhost'
