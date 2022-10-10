@@ -9,7 +9,7 @@ import mainRoutes from "./routes/ghibli.routes.js";
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url))
-console.log(__dirname);
+console.log(join(__dirname, '../client/dist'));
 app.use(cors({
     origin: 'http://localhost:5173'
 }))
