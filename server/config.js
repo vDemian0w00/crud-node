@@ -1,5 +1,5 @@
 
-export const PORT = process.env.PORT || 5737
+export const PORT = 6223
 
 export const DB_HOST = 'containers-us-west-98.railway.app'
 

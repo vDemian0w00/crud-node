@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PORT } from "../../../server/config";
+import { PORT } from "../../../server/config.js";
 
 const HOST = `http://localhost:${PORT}/ghibli/`;
 

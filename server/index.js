@@ -14,6 +14,5 @@ app.use(express.json())
 
 app.use(indexRoutes, mainRoutes);
 app.use(express.static(join(__dirname, '../client/dist')))
-console.log(join(__dirname, '../client/dist'));
 app.listen(PORT);
 console.log(`Server ejecutandose en puerto: ${PORT}`);
