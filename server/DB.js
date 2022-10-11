@@ -1,16 +1,12 @@
 import { createPool } from "mysql2/promise";
-import {
-  DB_HOST, 
-  DB_NAME,
-  DB_PASSWORD,
-  DB_PORT,
-  DB_USER
-} from './config.js'
 
 export const pool = createPool({
-  host: DB_HOST,
-  port: DB_PORT,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME,
+  connectionLimit: 10,
+  acquireTimeout: 30000, //30 secs
+  host: 'containers-us-west-98.railway.app',
+  port: 5934,
+  user: 'root',
+  password: 'ZlVUcgLAGLdlIXEckjWM',
+  database: "railway",
+  
 });
