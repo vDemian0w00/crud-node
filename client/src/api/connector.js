@@ -1,7 +1,6 @@
 import axios from "axios";
-import { PORT } from "../../../server/config.js";
 
-const HOST = `http://localhost:${PORT}/ghibli/`;
+const HOST = `https://crud-node.up.railway.app/ghibli/`;
 
 export const getPersonajesRequest = async () => await axios.get(HOST);
 
