@@ -8,5 +8,7 @@ export const pool = createPool({
   user: 'root',
   password: 'ZlVUcgLAGLdlIXEckjWM',
   database: "railway",
-  
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
