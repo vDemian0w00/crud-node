@@ -16,7 +16,7 @@ function Index() {
   }
   
   return (
-    <div className="bg-secondary">
+    <div className="">
       <h1 className="font-monospace">Lista de personajes</h1>
       {renderPersonajes()}
     </div>

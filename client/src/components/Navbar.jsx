@@ -7,8 +7,8 @@ const Navbar = () => {
         <div className="h1">Personajes Studio Ghibli</div>
 
         <ul className="nav nav-tabs">
-            <li className="nav-item px-2"><Link className="nav-link link-light" to="/">Inicio</Link></li>
-            <li className="nav-item px-2"><Link className="nav-link link-light" to="/add" >Añadir un personaje nuevo</Link></li>
+            <li className="nav-item px-2"><Link className=" btn btn-outline-light" to="/">Inicio</Link></li>
+            <li className="nav-item px-2"><Link className=" btn btn-outline-light" to="/add" >Añadir un personaje nuevo</Link></li>
         </ul>
     </div>
   )

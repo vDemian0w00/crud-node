@@ -2,6 +2,7 @@ import { Form, Formik } from "formik";
 import { usePersonaje } from "../context/PersonajeProvider";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 function PersonajeForm() {
   const { createPersonaje, cargarPersonaje, updatePersonaje } = usePersonaje();
@@ -16,7 +17,7 @@ function PersonajeForm() {
     movie_per: "",
   });
 
-  const [btnText, setBtnText] = useState("Cargar personaje")
+  const [btnText, setBtnText] = useState("Cargar personaje");
 
   useEffect(() => {
     setPersonaje({
@@ -34,7 +35,7 @@ function PersonajeForm() {
           age_per: personaje.age_per,
           movie_per: personaje.movie_per,
         });
-        setBtnText("Editar personaje")
+        setBtnText("Editar personaje");
       }
     };
     loadPersonaje();
@@ -48,11 +49,31 @@ function PersonajeForm() {
         initialValues={personaje}
         enableReinitialize={true}
         onSubmit={async (values, actions) => {
-          if (!params.id) {
-
-            await createPersonaje(values);
-          } else {
-            await updatePersonaje(params.id, values);
+          let regex = /^([A-Za-z .,\d])*$/;
+          if (regex.test(values.name_per) && regex.test(values.desc_per) && regex.test(values.movie_per) && Number.parseInt(values.age_per)>0) {
+            if (!params.id) {
+              await createPersonaje(values);
+              Swal.fire({
+                icon: "success",
+                title: "Proceso finalizado :)",
+                text: "Personaje creado correctamente",
+              });
+            } else {
+              await updatePersonaje(params.id, values);
+              Swal.fire({
+                icon: "success",
+                title: "Proceso finalizado :)",
+                text: "Personaje editado correctamente",
+              });
+            }
+          }else{
+            Swal.fire({
+              icon: "error",
+              title: "Error en la validación!",
+              text: "Introduzca datos correctos, evite el uso de caracteres como '<' o '!' o el uso de números negativos",
+            });
+            nav("/")
+            return
           }
 
           setPersonaje({
@@ -61,6 +82,7 @@ function PersonajeForm() {
             age_per: "",
             movie_per: "",
           });
+
           nav("/");
         }}
       >
@@ -69,6 +91,8 @@ function PersonajeForm() {
             <div className="input-group mb-3">
               <label className="input-group-text">Nombre de personaje</label>
               <input
+                maxLength={30}
+                required
                 className="form-control"
                 type="text"
                 name="name_per"
@@ -79,6 +103,8 @@ function PersonajeForm() {
 
             <div className="input-group mb-3">
               <textarea
+                maxLength={100}
+                required
                 className="form-control"
                 name="desc_per"
                 rows="3"
@@ -95,6 +121,9 @@ function PersonajeForm() {
                 Edad que tiene el personaje
               </label>
               <input
+                required
+                min={1}
+                max={1000}
                 className="form-control"
                 type="number"
                 name="age_per"
@@ -105,6 +134,7 @@ function PersonajeForm() {
                 Película en la que aparece
               </label>
               <input
+                required
                 className="form-control"
                 type="text"
                 name="movie_per"

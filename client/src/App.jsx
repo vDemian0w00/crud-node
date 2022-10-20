@@ -9,7 +9,7 @@ import { ContextProvider } from "./context/PersonajeProvider.jsx";
 
 export default function App() {
   return (
-    <div className=" bg-secondary text-white">
+    <div className=" ">
       <Navbar />
       <div className="py-4 px-5">
         <ContextProvider>
